@@ -1,7 +1,7 @@
 var app= angular
-        .module('app')
+        .module('loginapp')
         .factory('AuthenticationService', AuthenticationService);
- var BASE_URL = 'http://localhost:13026/CollabFrontEnd';
+ var BASE_URL = 'http://localhost:8036/Collaboration';
     AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope'];
     function AuthenticationService($http, $cookieStore, $rootScope) {
         var service = {};

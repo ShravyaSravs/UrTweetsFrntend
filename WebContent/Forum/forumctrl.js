@@ -1,6 +1,57 @@
+var app = angular.module('forumApp',[]);
 app.controller('forumctrl', [ '$scope', '$http', function($scope, $http) {
-	  $scope.userid=document.getElementById("userid").value; 
-	  var BASE_URL = 'http://localhost:13026/CollabFrontEnd';
+	var BASE_URL = 'http://localhost:8036/Collaboration';
+	$scope.getAllForum= function() {
+		console.log("get all forum")
+		$http({
+			method : 'GET',
+			url : BASE_URL+'/forum'
+		}).success(function(data, status, headers, config) {
+			$scope.forums=data;
+			//alert(data); 
+		}).error(function(data, status, headers, config) {
+			alert("Error");
+		});
+	};
+	$scope.submit = function() {
+		$scope.forum = {	
+			name : $scope.name,
+			topic:$scope.topic,
+			userid:$scope.userid,
+			doc: $scope.doc,
+			description:$scope.description
+		}
+		$http({
+			method : 'POST',
+			url : BASE_URL + '/createforum',
+			data : $scope.forum
+		}).success(function(data, status, headers, config) {
+			$scope.name='';
+			$scope.topic='';
+			$scope.userid='';
+			$scope.doc='';
+			$scope.description='';
+		}).error(function(data,status,headers,config){
+			alert("error");
+		});
+	};
+	$scope.deleteforum=function(id){
+		$http({
+			method:'DELETE',
+		url:BASE_URL+'/deleteforum/'+id
+		}).success(function(data,status,headers,config){
+			$scope.getAllForum();
+		})
+	};
+}]);
+
+
+
+/*var app =angular.module('forumApp',[]);
+app.controller('forumctrl', [ '$scope', '$http', function($scope, $http) {
+	  //$scope.userid=document.getElementById("userid").value; 
+	var BASE_URL = 'http://localhost:8036/Collaboration';
+	console.log("forum")
 	  $scope.submit = function() {	
 		$scope.forum = {	
 			fid       : $scope.forumid,
@@ -9,7 +60,7 @@ app.controller('forumctrl', [ '$scope', '$http', function($scope, $http) {
 		}
 		$http({
 			method : 'POST',
-			url : BASE_URL +'/CreateForum',
+			url : BASE_URL +'/createforum',
 			data : $scope.forum
 		}).success(function(data, status, headers, config) {
 			//alert("Success");
@@ -26,7 +77,7 @@ app.controller('forumctrl', [ '$scope', '$http', function($scope, $http) {
 	$scope.getAllForums = function() {
 		$http({
 			method : 'GET',
-			url : 'getAllForums'
+			url : 'forum'
 		}).success(function(data, status, headers, config) {
 			$scope.forums = data;// alert(data); 
 		}).error(function(data, status, headers, config) {
@@ -84,55 +135,4 @@ app.controller('forumctrl', [ '$scope', '$http', function($scope, $http) {
 	}
 	$scope.getAllForums();
 }]);
-
-
-
-
-
-
-/*var app = angular.module('forumApp',[]);
-app.controller('forumctrl', [ '$scope', '$http', function($scope, $http) {
-	var BASE_URL = 'http://localhost:8036/CollabFrontEnd';
-	$scope.getAllForum= function() {
-		console.log("get all forum")
-		$http({
-			method : 'GET',
-			url : BASE_URL+'/forum'
-		}).success(function(data, status, headers, config) {
-			$scope.forums=data;
-			//alert(data); 
-		}).error(function(data, status, headers, config) {
-			alert("Error");
-		});
-	};
-	$scope.submit = function() {
-		$scope.forum = {	
-			name : $scope.name,
-			topic:$scope.topic,
-			userid:$scope.userid,
-			doc: $scope.doc,
-			description:$scope.description
-		}
-		$http({
-			method : 'POST',
-			url : BASE_URL + '/createforum',
-			data : $scope.forum
-		}).success(function(data, status, headers, config) {
-			$scope.name='';
-			$scope.topic='';
-			$scope.userid='';
-			$scope.doc='';
-			$scope.description='';
-		}).error(function(data,status,headers,config){
-			alert("error");
-		});
-	};
-	$scope.deleteforum=function(id){
-		$http({
-			method:'DELETE',
-		url:BASE_URL+'/deleteforum/'+id
-		}).success(function(data,status,headers,config){
-			$scope.getAllForum();
-		})
-	};
-}]);*/
+*/

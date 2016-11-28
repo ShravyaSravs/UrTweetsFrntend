@@ -1,5 +1,5 @@
-var app = angular.module('app',[]);
- app.controller('loginctrl', LoginController);
+var app = angular.module('loginapp',[]);
+ app.controller('LoginController', LoginController);
 
     LoginController.$inject = ['$location',  'AuthenticationService'];
  

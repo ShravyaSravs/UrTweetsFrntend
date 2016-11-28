@@ -1,4 +1,4 @@
-var app = angular.module("myroute", ["ngRoute","ngCookies","myApp","forumApp","registerApp","app"])
+var app = angular.module("myroute", ["ngRoute","ngCookies","myApp","forumApp","registerApp","loginapp"])
 .run(run);
 app.config(function($routeProvider,$locationProvider) {
     $routeProvider
@@ -9,7 +9,7 @@ app.config(function($routeProvider,$locationProvider) {
     })
     .when("/blog", {
         templateUrl : "Blog/blog.html",
-        controller :'blogcntrl'
+        controller :'blogctrl'
        
     })
     .when("/forum", {
@@ -21,19 +21,26 @@ app.config(function($routeProvider,$locationProvider) {
     	templateUrl: "Users/register.html",
     	controller: "userctrl"
     })
+    .when("/users",{
+    	templateUrl: "Friend/AllUsers.html",
+    	controller:'myfriendctrl'
+    })
     .when("/login",{
     	templateUrl:"Login/Login.html",
     	controller:'LoginController',
     	controllerAs:'vm'
+    })
+    .when("/chat",{
+    	templateUrl: "Chat/chat.html",
+    	controller: "ChatCtrl",
     });
-  
         });
 run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
 function run($rootScope, $location, $cookieStore, $http) {
     // keep user logged in after page refresh
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+        $http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
     }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {

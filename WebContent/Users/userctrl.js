@@ -1,7 +1,7 @@
 var app = angular.module('registerApp',[]);
 app.controller('userctrl', [ '$scope', '$http', function($scope, $http) {
 	console.log("user")
-	var BASE_URL = 'http://localhost:13026/CollabFrontEnd';
+	var BASE_URL = 'http://localhost:8036/Collaboration';
 	$scope.submit = function() {
 		
 		$scope.users = {	
@@ -31,5 +31,5 @@ app.controller('userctrl', [ '$scope', '$http', function($scope, $http) {
 		}).error(function(data,status,headers,config){
 			alert("error");
 		});
-	
+	}	
 }]);

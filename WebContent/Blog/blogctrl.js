@@ -1,7 +1,9 @@
+/*var app = angular.module('myApp',[]);
 app.controller('blogctrl', [ '$scope', '$http', function($scope, $http) {
-	$scope.userid=document.getElementById("userid").value; 
+	var BASE_URL = 'http://localhost:8036/Collaboration';
+	//$scope.userid=document.getElementById("userid").value; 
 	$scope.submit = function() {
-		var BASE_URL = 'http://localhost:13026/CollabFrontEnd';
+		
 		$scope.blog = {	
 			bid      : $scope.blogid,
 			blogName : $scope.blogName,
@@ -75,14 +77,14 @@ app.controller('blogctrl', [ '$scope', '$http', function($scope, $http) {
 	$scope.getAllBlogs();
 }]);
 
+*/
 
 
 
 
-
-/*var app = angular.module('myApp',[]);
-app.controller('blogcntrl', [ '$scope', '$http', function($scope, $http) {
-	var BASE_URL = 'http://localhost:8036/CollabFrontEnd';
+var app = angular.module('myApp',[]);
+app.controller('blogctrl', [ '$scope', '$http', function($scope, $http) {
+	var BASE_URL = 'http://localhost:8036/Collaboration';
 
 	$scope.getAllBlogs= function() {
 		console.log("get all blogs")
@@ -135,4 +137,3 @@ app.controller('blogcntrl', [ '$scope', '$http', function($scope, $http) {
 		$scope.content=content;
 	}
 	        }]);
-*/*/
