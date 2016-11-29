@@ -31,16 +31,17 @@ app.config(function($routeProvider,$locationProvider) {
     	controllerAs:'vm'
     })
     .when("/chat",{
-    	templateUrl: "Chat/chat.html",
-    	controller: "ChatCtrl",
+    	templateUrl: "chat/chat.html",
+    	controller: "chatController",
     });
+  
         });
 run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
 function run($rootScope, $location, $cookieStore, $http) {
     // keep user logged in after page refresh
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
-        $http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
     }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
