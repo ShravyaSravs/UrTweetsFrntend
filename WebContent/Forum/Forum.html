@@ -17,6 +17,7 @@ userid:<input type="text" data-ng-model="userid">
 		
 			<button type="submit">Create Forum</button>
 	</form>
+	<input type="text" data-ng-model="search" placeholder="search forum">
 	<div data-ng-init="getAllForum()">
 	<div data-ng-repeat="forum in forums">
 	{{forum.name}}
