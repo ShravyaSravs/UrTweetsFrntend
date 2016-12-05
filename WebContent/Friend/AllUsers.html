@@ -5,8 +5,8 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="allUsersCtrl.js"></script>
 </head>
-<body data-ng-app="allusers">
-<div data-ng-init="getAllUsers">
+<body data-ng-app="users">
+<div data-ng-init="getAllUsers()">
 <div data-ng-repeat="user in users | filter:search">
 {{user.username}}
 {{user.mail}}

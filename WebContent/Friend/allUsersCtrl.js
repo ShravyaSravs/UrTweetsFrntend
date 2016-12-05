@@ -1,6 +1,6 @@
-var app=angular.module('allusers',[]);
+var app=angular.module('users',[]);
 app.controller('alluserctrl',['$scope','$http',function($scope,$http){
-	var BASE_URL = 'http://localhost:8036/CollabFrontEnd';
+	var BASE_URL = 'http://localhost:8036/Collaboration';
 	$scope.getAllUsers= function() {
 		console.log("get all users")
 		$http({
