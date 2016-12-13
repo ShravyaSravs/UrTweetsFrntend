@@ -1,5 +1,5 @@
 app.controller('jobctrl', ['$scope','$http',function($scope,$http) {
-	var BASE_URL = 'http://localhost:8083/CollabServer';
+	var BASE_URL = 'http://localhost:8065/Collaboration';
 	$scope.submit=function(){
 		console.log("job")
 		$scope.job = {	

@@ -1,6 +1,7 @@
-var app = angular.module("myroute", ["ngRoute","ngCookies","myApp","forumApp","registerApp","loginapp","users"])
+var app = angular.module("myApp", ["ngRoute","ngCookies","blogapp"])
 .run(run);
 app.config(function($routeProvider,$locationProvider) {
+	
     $routeProvider
     .when("/home", {
         templateUrl : "Home.html",
@@ -9,7 +10,7 @@ app.config(function($routeProvider,$locationProvider) {
     })
     .when("/blog", {
         templateUrl : "Blog/blog.html",
-        controller :'blogctrl'
+        controller :'blogcntrl'
        
     })
     .when("/forum", {
@@ -21,32 +22,52 @@ app.config(function($routeProvider,$locationProvider) {
     	templateUrl: "Users/register.html",
     	controller: "userctrl"
     })
-    .when("/users",{
-    	templateUrl: "Friend/AllUsers.html",
-    	controller:'alluserctrl'
-    })
     .when("/login",{
     	templateUrl:"Login/Login.html",
     	controller:'LoginController',
     	controllerAs:'vm'
     })
+    .when("/users",{
+    	templateUrl: "Friend/AllUsers.html",
+    	controller:'alluserctrl'
+    })
     .when("/chat",{
-    	templateUrl: "chat/chat.html",
-    	controller: "chatController"
+    	templateUrl: "Chat/chat.html",
+    	controller: "chatController",
+    })
+    .when("/jobs",{
+    	templateUrl: "Job/ViewJob.html",
+    	controller: "jobctrl"
+    })
+    .when("/individualforum",{
+    	templateUrl: "Forum/IndividualForum.html",
+	controller: "commentctrl"
+    })
+    .when("/myprofile",{
+    	templateUrl: "Users/UserProfile.html",
+    	controller: "userctrl"
+    })
+    .when("/myfriends",{
+    	templateUrl: "Friend/MyFriends.html",
+    	controller: "myfriendctrl"
+    })
+    .when("/newrequests",{
+    	templateUrl: "Friend/newrequests.html",
+    	controller: "myfriendctrl"
     });
-  
-        });
+    console.log("route");    });
 run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
 function run($rootScope, $location, $cookieStore, $http) {
     // keep user logged in after page refresh
     $rootScope.globals = $cookieStore.get('globals') || {};
+    $rootScope.currentuser = $cookieStore.get('currentuser') || {};
     if ($rootScope.globals.currentUser) {
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
     }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
         // redirect to login page if not logged in and trying to access a restricted page
-        var restrictedPage = $.inArray($location.path(), ['/login', '/register','/home']) === -1;
+        var restrictedPage = $.inArray($location.path(), ['/login', '/register','/home','/jobs']) === -1;
         var loggedIn = $rootScope.globals.currentUser;
         if (restrictedPage && !loggedIn) {
             $location.path('/login');
