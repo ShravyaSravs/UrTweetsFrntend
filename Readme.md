@@ -1,12 +1,13 @@
 # UrTweetsFrntend - NIIT Project ②
 Collaboration project consisting of basic funtionality like
-- New user registrations
-- Blogs
-- Blog rating, Blog likes
-- Forums
-- Forum comments
-- User profiles with multipart image and wall posts
-- Friend Request (adding and removing)
+ - New user registrations
+ - Blogs
+ - Blog likes
+ - Forums
+ - Forum comments
+ - Group Chat
+ - User profiles with multipart image 
+ - Friend Request (accept and reject)
 
 ##Installation Guide
 
